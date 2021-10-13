@@ -1,0 +1,10 @@
+<launch>
+	<node pkg="lab6" type="path_planning.py" name="Trajectory_planner" output="screen">
+		<param name="odom_topic" value="/tesse/odom"/>
+	</node>
+
+	<node pkg="lab6" type="pure_pursuit_obs.py" name="Trajectory_follower" output="screen">
+		<param name="odom_topic" value="/tesse/odom"/>
+	</node>
+
+</launch>

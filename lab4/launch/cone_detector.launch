@@ -1,0 +1,16 @@
+  <launch>
+
+  <!-- 1 is Windridge City, 2 is test scene -->
+  <arg name="initial_scene"       default="1"/>
+  <arg name="csv_path"  default="$(find visual_servoing_tesse)/tesse_windridge_city_scene_segmentation_mapping.csv" />
+  <param name="/track" value="big_cone_parking" />
+  <!-- Maps and TESSE simulator interface -->
+  <include file="$(find tesse_ros_bridge)/launch/tesse_bridge.launch">
+      <arg name="initial_scene" value="$(arg initial_scene)"/>
+  </include>
+
+  <!-- Launch the cone detection node. takes published topics in the camera frame and converts them to /relative_cone in the world frame -->
+  <node pkg="visual_servoing_tesse" name="cone_detector" type="cone_detector.py" output="screen">
+  </node>
+
+</launch>

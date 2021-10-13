@@ -1,0 +1,13 @@
+<launch>
+    <!-- 1 is Windridge City, 2 is test scene -->
+    <!-- <arg name="initial_scene"       default="1"/> -->
+
+    <!-- Maps and TESSE simulator interface -->
+    <!-- <include file="$(find tesse_ros_bridge)/launch/tesse_bridge.launch">
+        <arg name="initial_scene" value="$(arg initial_scene)"/>
+    </include> -->
+
+    <node pkg="wall_follower_tesse" name="wall_follower_tesse" type="wall_follower_tesse.py" output="screen">
+        <rosparam command="load" file="$(find wall_follower_tesse)/params_tesse.yaml"/>
+    </node>
+</launch>

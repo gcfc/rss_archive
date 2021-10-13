@@ -1,0 +1,9 @@
+<launch>
+  <node pkg="localization" type="particle_filter.py" name="particle_filter" output="screen">
+    <rosparam command="load" file="$(find localization)/params.yaml"/>
+  </node>
+
+    <node pkg="wall_follower" name="wall_follower" type="wall_follower.py" output="screen">
+    <rosparam command="load" file="$(find wall_follower)/params.yaml"/>
+  </node>
+</launch>

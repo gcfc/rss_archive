@@ -1,0 +1,22 @@
+<launch>
+    <!-- Here's an example launch file with arguments you might be interested in for spawning, loading the segmentation mapping csv, and using them as parameters in your nodes below. Note that the parameter name for spawning to work correctly must remain /track -->
+    <arg name="initial_scene"       default="1"/>
+    <arg name="csv_path"  default="$(find visual_servoing_tesse)/tesse_windridge_city_scene_segmentation_mapping.csv" />
+    <param name="/track" value="line_follower_flat" />
+    <!-- Maps and TESSE simulator interface -->
+    <include file="$(find tesse_ros_bridge)/launch/tesse_bridge.launch">
+        <arg name="initial_scene" value="$(arg initial_scene)"/>
+    </include>
+
+    <!-- Launch other nodes with parameters -->
+    <node pkg="visual_servoing_tesse" name="line_finder" type="line_finder.py" output="screen">
+        <rosparam command="load" file="$(find visual_servoing_tesse)/params_tesse.yaml"/>
+        <param name="csv_path" value="$(arg csv_path)" />
+    </node>
+
+    <node pkg="visual_servoing_tesse" name="homography_converter" type="homography_converter.py" output="screen">
+    </node>
+
+    <node pkg="visual_servoing_tesse" name="parking_controller" type="parking_controller.py" output="screen">
+    </node>
+</launch>
