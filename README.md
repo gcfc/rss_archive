@@ -7,3 +7,5 @@ Topics included:
 * Computer Vision: color segmentation, homography transformation, line detection via Hough Transforms
 * Monte Carlo Localization
 * Search-based and sample-based path planning, pure pursuit
+
+Skills used: ROS, python, Linux, Git
